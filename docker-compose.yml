@@ -10,7 +10,8 @@ services:
       - PGDATA=/var/lib/postgresql/data/pgdata
     volumes:
       - db-data:/var/lib/postgresql/data
-    # PostgreSQL is intentionally not exposed to the host
+    ports:
+      - "127.0.0.1:5432:5432"   # localhost-only — required by the erp-platform app on the host
 
   odoo:
     image: odoo:17.0
