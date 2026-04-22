@@ -32,7 +32,7 @@ services:
       - ./scripts:/opt/basetaa-scripts:ro
     # On every start: update all tenant DBs if Odoo version changed, then start normally.
     # Prevents KeyError: 'ir.http' after any Odoo image upgrade.
-    command: bash -c "bash /opt/basetaa-scripts/update_tenants.sh && exec odoo"
+    command: bash -c "bash /opt/basetaa-scripts/update_tenants.sh && exec odoo --db_host=$$HOST --db_port=$$PORT --db_user=$$USER --db_password=$$PASSWORD"
 
 volumes:
   db-data:
